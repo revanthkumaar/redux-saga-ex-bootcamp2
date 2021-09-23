@@ -10,13 +10,15 @@ import { Provider } from "react-redux";
 import { reducer } from "./redux";
 import logger from 'redux-logger'
 
+//import saga to run it
+import { watcherSaga } from "./sagas";
 
 //setup saga - creating instance of saga in react app
 const sagaMiddleware = createSagaMiddleware()
 
 let store = createStore(reducer,applyMiddleware(sagaMiddleware,logger))
 
-sagaMiddleware.run()
+sagaMiddleware.run(watcherSaga);
 
 ReactDOM.render(
   <Provider store={store}>
